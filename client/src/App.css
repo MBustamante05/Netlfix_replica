@@ -1,0 +1,47 @@
+/* LANDING STYLE */
+.section1 {
+  position: relative;
+  height: 100vh;
+  background: url("./assets/bg_hd.jpeg") no-repeat center center/cover;
+  overflow: hidden;
+}
+.section1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.801); /* Ajusta el nivel de opacidad */
+  z-index: 1;
+}
+.content {
+  position: relative;
+  text-align: center;
+  z-index: 2; /* Coloca el texto por encima del overlay */
+}
+.bg-blur {
+  background-color: rgba(26, 26, 26, 0.662);
+}
+.slick-slide .card {
+  margin: 0 15px;
+}
+.num-card {
+  -webkit-text-stroke: 2px #fff;
+}
+.cardInfo {
+  background: radial-gradient(
+    circle at bottom right,
+    #320e1d,
+    #200f19 3%,
+    #1f1220 10%,
+    #1F1426 25%,
+    #1d172d 40%,
+    #1b1c39 70%,
+    #192144 100%
+  );
+  color: white;
+  padding: 20px 15px;
+  border-radius: 12px; /* Esquinas redondeadas */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
