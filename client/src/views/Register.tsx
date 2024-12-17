@@ -1,5 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import LanguageIcon from "@mui/icons-material/Language";
+import { useState } from "react";
+import axios from "axios";
+
 const data = [
   "Preguntas frecuentes",
   "Centro de ayuda",
@@ -27,30 +30,79 @@ function NavBar() {
     </nav>
   );
 }
+
 function Form() {
-  const inputStyle =
-    "px-2 py-4 border focus:border-blue-600 border-gray-500 mb-2 block w-full rounded-sm";
+  const [error, setError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const inputStyle = `px-2 py-4 border focus:border-blue-600 ${
+    error ? "border-red-500" : "border-gray-500"
+  }  mt-2 block w-full rounded-sm`;
   const pStyle = "text-lg text-[#363636]";
+
+  axios.defaults.withCredentials = true;
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (email.trim() === "" || password.trim() === "") {
+      setError(true);
+      return;
+    }
+
+    setError(false);
+    axios.post('/api/users/signup', { email, password })
+      .then(res => {
+        console.log(res.data);
+        if(res.data === 'Success!'){
+          navigate('/home');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        setError(true);
+      });
+  };
   return (
     <div className="h-[402px] w-[455px] mx-auto mt-12">
       <h1 className="font-semibold text-[2.1rem] leading-tight mb-2 text-gray-800">
         Crea una contraseña para <br /> que comiences tu membresía
       </h1>
       <p className={pStyle}>¡Unos pasos más y listo!</p>
-      <p className={[pStyle, "mb-4"].join(" ")}>
+      <p className={[pStyle, "mb-2"].join(" ")}>
         Tampoco nos gustan los trámites.
       </p>
-      <form>
-        <input type="email" placeholder="Email" className={inputStyle} />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          className={inputStyle}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        {error ? (
+          <small className="text-red-600">El email es requerido</small>
+        ) : (
+          ""
+        )}
         <input
           type="password"
           placeholder="Agrega una contraseña"
           className={inputStyle}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
+        {error ? (
+          <small className="text-red-600">La contraseña es requerida</small>
+        ) : (
+          ""
+        )}
         {/* Arreglar color más vívido */}
         <button
           type="submit"
-          className="rounded-[4px] text-2xl bg-red-600 hover:bg-red-500 mt-2 w-full py-4 text-white"
+          className="rounded-[4px] text-2xl bg-red-600 hover:bg-red-500 mt-4 w-full py-4 text-white"
         >
           Siguiente
         </button>
@@ -71,7 +123,11 @@ function Footer() {
       </p>
       <div className="grid grid-cols-4 gap-3 mt-6 mb-3 w-3/4">
         {data.map((f, i) => (
-          <a className="text-[#737373] text-sm hover:underline" href="#" key={i}>
+          <a
+            className="text-[#737373] text-sm hover:underline"
+            href="#"
+            key={i}
+          >
             {f}
           </a>
         ))}
@@ -101,7 +157,6 @@ function Register() {
         <hr />
         <Form />
       </div>
-
       <hr />
       <Footer />
     </div>
