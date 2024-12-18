@@ -122,3 +122,12 @@ export const frecuentes = [
   "Contáctanos",
   "Avisos legales"
 ]
+
+export const frecuentesResume = [
+  "Preguntas frecuentes",
+  "Centro de ayuda",
+  "Términos de uso",
+  "Privacidad",
+  "Preferencias de cookies",
+  "Información corporativa",
+]

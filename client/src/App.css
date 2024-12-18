@@ -1,18 +1,23 @@
 /* LANDING STYLE */
-.section1 {
-  position: relative;
-  height: 100vh;
+.section1{
   background: url("./assets/bg_hd.jpeg") no-repeat center center/cover;
-  overflow: hidden;
 }
 .section1::before {
+  background: rgba(0, 0, 0, 0.801); /* Ajusta el nivel de opacidad */
+}
+
+.bg {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.bg::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.801); /* Ajusta el nivel de opacidad */
   z-index: 1;
 }
 .content {
@@ -20,6 +25,7 @@
   text-align: center;
   z-index: 2; /* Coloca el texto por encima del overlay */
 }
+
 .bg-blur {
   background-color: rgba(26, 26, 26, 0.662);
 }
@@ -47,4 +53,26 @@
 }
 p{
   color: #fefefe;
+}
+
+/* LOGIN */
+.login{
+  background: url('./assets/bg_inicio2.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.login::before {
+  background: rgba(0, 0, 0, 0.61); /* Ajusta el nivel de opacidad */
+}
+.login-form{
+  background: rgba(0, 0, 0, 0.618);
+}
+.btn-code{
+  background-color: rgba(142, 142, 142, 0.384);
+  transition: all 0.3s;
+}
+.btn-code:hover{
+  background-color: rgba(142, 142, 142, 0.318);
 }

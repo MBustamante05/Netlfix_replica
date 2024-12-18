@@ -2,15 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LanguageIcon from "@mui/icons-material/Language";
 import { useState } from "react";
 import axios from "axios";
-
-const data = [
-  "Preguntas frecuentes",
-  "Centro de ayuda",
-  "Términos de uso",
-  "Privacidad",
-  "Preferencias de cookies",
-  "Información corporativa",
-];
+import { frecuentesResume } from '../data/infoLanding'
 function NavBar() {
   const navigate = useNavigate();
   return (
@@ -122,7 +114,7 @@ function Footer() {
         </a>
       </p>
       <div className="grid grid-cols-4 gap-3 mt-6 mb-3 w-3/4">
-        {data.map((f, i) => (
+        {frecuentesResume.map((f, i) => (
           <a
             className="text-[#737373] text-sm hover:underline"
             href="#"

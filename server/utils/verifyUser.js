@@ -5,7 +5,7 @@ const verifyUser = (req, res, next) => {
   if(!token){
     return res.json('The token was not available');
   }else{
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
       if(err){
         return res.json('The token is not valid');
       }else{

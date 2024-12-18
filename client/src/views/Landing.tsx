@@ -12,22 +12,26 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AddIcon from "@mui/icons-material/Add";
 import Languages from "../components/Landing/Languages";
+import FooterInfo from "../components/User/FooterInfo";
+import { Link } from "react-router-dom";
 // import {Button as Btn} from "@mui/material";
 
 function Section1() {
   return (
-    <section className="section1 h-screenrelative">
+    <section className="bg section1 h-screen relative">
       <nav className="content flex items-center justify-between  px-[150px]">
         <img
-          className="w-52"
+          className="w-48"
           src="/Netflix_Logo_RGB.png"
           alt="Logo de Netflix"
         />
         <div className="flex gap-3">
-          <Languages/>
-          <button className="bg-red-700 hover:bg-red-800 text-white font-medium rounded-[4px] px-4 py-[6px] text-sm">
-            Iniciar Sesión
-          </button>
+          <Languages />
+          <Link to="/login">
+            <button className="bg-red-700 hover:bg-red-800 text-white font-medium rounded-[4px] px-4 py-[6px] text-sm">
+              Iniciar Sesión
+            </button>
+          </Link>
         </div>
       </nav>
       <div className="content text-white text-center w-[640px] m-auto my-[120px]">
@@ -122,19 +126,14 @@ function Section3() {
     </section>
   );
 }
-function Footer(){
+function Footer() {
   return (
     <footer className="mt-5 pb-[80px]">
-      <p className="text-[#B3B3B3] text-[1.05rem]">¿Preguntas? Llama al <a className="underline " href="#">01 800 917 1564</a></p>
-      <div className="grid grid-cols-4 gap-3 my-12">
-          {frecuentes.map((f, i) => (
-            <a className="text-[#AAAAAA] text-sm underline" href="#" key={i}>{f}</a>
-          ))}
-      </div>
-      <Languages/>
+      <FooterInfo data={frecuentes} underline={true} marginY="my-12" />
+      <Languages />
       <p className="text-[#AAAAAA] mt-10 text-sm">Netflix Colombia</p>
     </footer>
-  )
+  );
 }
 function Landing() {
   return (
@@ -143,7 +142,7 @@ function Landing() {
       <div className="px-[150px]">
         <Section2 />
         <Section3 />
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );
