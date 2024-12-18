@@ -1,4 +1,5 @@
-require("dotenv").config();
+const { MONGO_URL, PORT } = require('./config');
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -21,9 +22,9 @@ app.use('/api/users', userRoutes);
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect(MONGO_URL)
   .then(() => {
-    app.listen(process.env.PORT, () => console.log("Servidor en ejecución..."));
+    app.listen(PORT, () => console.log("Servidor en ejecución..."));
     console.log("Conectado a MongoDB");
   })
   .catch((err) => console.log(`Error al conectarse a MongoDB: ${err.message}`));

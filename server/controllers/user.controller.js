@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { JWT_KEY } = require('../config');
 
 const register = async (req, res) => {
   const { email, password } = req.body;
@@ -9,7 +10,7 @@ const register = async (req, res) => {
     .then((hash) => {
       User.create({ email: email, password: hash })
         .then((user) => {
-          const token = jwt.sign({ email: user.email }, process.env.JWT_KEY, {
+          const token = jwt.sign({ email: user.email }, JWT_KEY, {
             expiresIn: "1d",
           });
           res.cookie("token", token);
@@ -33,7 +34,7 @@ const login = async (req, res) => {
           if (!result) {
             return res.status(401).json({ error: "Contraseña incorrecta" });
           }
-          const token = jwt.sign({ email: user.email }, process.env.JWT_KEY, {
+          const token = jwt.sign({ email: user.email }, JWT_KEY, {
             expiresIn: "1d",
           });
           res.cookie("token", token);
